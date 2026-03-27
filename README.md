@@ -63,27 +63,27 @@ We focus on a luxury hospitality context (Marina Bay Sands, Singapore), where di
 
 ```
 NLP_Team6/
-├── docs/                  Project proposal
 ├── data/
-│   ├── raw/               Raw TripAdvisor Excel file (git-ignored)
-│   └── processed/         Filtered reviews, segmented sentences, annotated data
+│   ├── raw/                                    Raw TripAdvisor Excel file (git-ignored)
+│   └── processed/                              Filtered reviews, segmented sentences, annotated data
 ├── notebooks/
-│   └── 00_full_pipeline.ipynb    Full end-to-end pipeline (all 6 phases)
-├── src/                   Core pipeline logic (all reusable functions)
-│   ├── config.py          Centralised paths, seeds, and parameters
-│   ├── data_loading.py    Load + filter reviews
-│   ├── preprocessing.py   Sentence segmentation + cleaning
-│   ├── eda.py             EDA plots and domain gap analysis
-│   ├── annotation.py      Sampling, IAA, merge, train/test split
-│   ├── baselines.py       Regex classifier + TF-IDF + Logistic Regression
-│   ├── bert_model.py      Two-stage BERT fine-tuning and prediction
-│   ├── evaluation.py      Shared metrics, PR curves, confusion matrices
-│   ├── topic_modeling.py  BERTopic clustering + aspect grouping
-│   └── error_analysis.py  Error categorisation and comparison plots
-├── report/                LaTeX report (ACL template) + references
-├── run_pipeline.py        CLI runner: python run_pipeline.py [--phase N]
-├── outputs/               Figures (25 PNGs), model checkpoints (git-ignored)
-├── external/              External reference code and data (SemEval)
+│   └── 00_full_pipeline.ipynb                  Full end-to-end pipeline (all 6 phases)
+├── src/                                        Core pipeline logic (all reusable functions)
+│   ├── config.py                               Centralised paths, seeds, and parameters
+│   ├── data_loading.py                         Load + filter reviews
+│   ├── preprocessing.py                        Sentence segmentation + cleaning
+│   ├── eda.py                                  EDA plots and domain gap analysis
+│   ├── annotation.py                           Sampling, IAA, merge, train/test split
+│   ├── baselines.py                            Regex classifier + TF-IDF + Logistic Regression
+│   ├── bert_model.py                           Two-stage BERT fine-tuning and prediction
+│   ├── evaluation.py                           Shared metrics, PR curves, confusion matrices
+│   ├── topic_modeling.py                       BERTopic clustering + aspect grouping
+│   └── error_analysis.py                       Error categorisation and comparison plots
+├── MSIN0221_GroupProject_Team6_Proposal.pdf    Project proposal
+├── MSIN0221_GroupProject_Team6_Report.pdf      Project report (ACL template) + references + appendices
+├── run_pipeline.py                             CLI runner: python run_pipeline.py [--phase N]
+├── outputs/                                    Figures (25 PNGs), model checkpoints (git-ignored)
+├── external/                                   External reference code and data (SemEval)
 └── requirements.txt
 ```
 
