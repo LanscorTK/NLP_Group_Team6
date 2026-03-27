@@ -1,0 +1,130 @@
+\section{Results}
+
+\subsection{Model Comparison}
+
+Table~\ref{tab:results} reports suggestion-class F1 for each
+model on both datasets. On the SemEval test set, BERT stage-1
+achieves the highest suggestion-class F1 (0.716), followed by
+TF-IDF~+~LR (0.596) and the regex baseline (0.386). Each tier
+improves over the previous, confirming that learned
+representations outperform hand-crafted patterns for in-domain
+suggestion detection.
+
+\begin{table}[t]
+\centering\footnotesize
+\caption{Suggestion-class metrics. P = precision, R = recall.
+  $\Delta$ = MBS F1 $-$ SemEval F1.}
+\label{tab:results}
+\begin{tabular}{l@{\hskip 4pt}ccc@{\hskip 6pt}cccc}
+\toprule
+& \multicolumn{3}{c}{\textbf{SemEval}}
+& \multicolumn{3}{c}{\textbf{MBS}} & \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+\textbf{Model} & P & R & F1 & P & R & F1
+  & $\Delta$ \\
+\midrule
+Regex      & .405 & .368 & .386 & .421 & .533 & .471
+  & $+$.09 \\
+TF-IDF+LR  & .486 & .770 & .596 & .333 & .133 & .190
+  & $-$.41 \\
+BERT s-1   & .624 & .839 & .716 & .500 & .200 & .286
+  & $-$.43 \\
+BERT s-2   & .513 & .908 & .656 & .563 & .600 & .581
+  & $-$.08 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On the MBS test split, BERT stage-2 achieves the best
+suggestion-class F1 (0.581), approximately doubling the stage-1
+result (0.286). The two-stage fine-tuning improves both precision (0.500
+$\rightarrow$ 0.563) and recall (0.200 $\rightarrow$ 0.600) on
+MBS, indicating that domain-specific training helps the model
+recognise hotel-style suggestion language.
+Figure~\ref{fig:cm-s2} shows the confusion matrix for BERT
+stage-2 on the MBS test split.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.75\columnwidth]{cm_bert_s2_mbs.png}
+\caption{Confusion matrix for BERT stage-2 on the MBS test
+  split (80 sentences).}
+\label{fig:cm-s2}
+\end{figure}
+
+\subsection{Domain Transfer Analysis}
+
+Cross-domain performance reveals a striking pattern: the two
+learned models suffer large drops when moving from SemEval to MBS
+(TF-IDF~+~LR: $-$0.406; BERT stage-1: $-$0.430), while the regex
+baseline actually improves slightly ($+$0.085). This suggests that
+the learned models overfit to SemEval-specific vocabulary and
+sentence structures (e.g.\ software feature requests), whereas
+simple modal and conditional patterns transfer across domains.
+The differing suggestion base rates between the SemEval test set
+(10.4\%) and MBS test split (18.8\%) may also partly explain the
+regex improvement, as a higher base rate favours
+pattern-matching approaches.
+
+However, the regex baseline's cross-domain robustness comes at
+the cost of low absolute performance (suggestion-class F1 of
+0.471 on MBS). The regex approach generates 11 false positives on
+the 80-sentence MBS test split, primarily from positive modal
+phrases (e.g.\ ``We would recommend this hotel to anyone'')
+that match suggestion patterns but express praise.
+
+BERT stage-2 demonstrates that even a small amount of in-domain
+labelled data (320 sentences) can substantially recover
+cross-domain performance. Compared to BERT stage-1 on MBS,
+stage-2 reduces false negatives from 12 to 6 and improves recall
+from 0.200 to 0.600, at the cost of a modest increase in false
+positives (3 $\rightarrow$ 7). On the SemEval test set, stage-2
+suggestion-class F1 drops from 0.716 to 0.656, with precision
+falling (0.624 $\rightarrow$ 0.513) while recall rises (0.839
+$\rightarrow$ 0.908)---moderate forgetting from hotel
+fine-tuning. Figure~\ref{fig:model-comparison} summarises
+suggestion-class F1 across models and datasets.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{model_comparison.png}
+\caption{Suggestion-class F1 by model and dataset.}
+\label{fig:model-comparison}
+\end{figure}
+
+\subsection{Suggestion Themes (BERTopic)}
+
+BERTopic analysis of 4,179 predicted suggestions from BERT
+stage-2 identified 56 topics, with topic~0 containing 2,278
+sentences and the remaining 55 topics ranging from 5 to 56
+sentences each.
+Topic~0 functions as a catch-all for sentences lacking
+distinctive sub-themes; the finer-grained topics (1--55) capture
+specific operational areas such as minibar pricing, elevator
+access, and pool amenities.
+
+\begin{table}[t]
+\centering\small
+\caption{Aspect distribution of predicted suggestions.}
+\label{tab:aspects}
+\begin{tabular}{lrr}
+\toprule
+\textbf{Aspect} & \textbf{Count} & \textbf{\%} \\
+\midrule
+Other            & 1,299 & 31.1 \\
+Room             &   990 & 23.7 \\
+Facilities       &   638 & 15.3 \\
+Food \& beverage &   490 & 11.7 \\
+Value            &   309 &  7.4 \\
+Service          &   234 &  5.6 \\
+Location         &   219 &  5.2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Room-related suggestions dominate (23.7\%), followed by
+facilities (15.3\%) and food and beverage (11.7\%). The ``other''
+category (31.1\%) captures suggestions that do not match
+predefined aspect keywords. Room amenities and physical
+facilities together account for 39\% of all detected
+suggestions, providing a clear priority for hotel management.

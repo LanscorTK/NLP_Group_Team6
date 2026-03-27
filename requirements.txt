@@ -1,0 +1,55 @@
+# Core
+pip>=23.0
+numpy>=1.24
+pandas>=2.0
+scipy>=1.10
+tqdm>=4.66
+
+# Data I/O (xlsx/csv)
+openpyxl>=3.1
+
+# NLP — spaCy
+spacy>=3.7
+
+# NLP — NLTK (IAA computation)
+nltk>=3.8
+
+# ML / evaluation
+scikit-learn>=1.3
+
+# Visualisation
+matplotlib>=3.7
+seaborn>=0.13
+wordcloud>=1.9
+
+# Transformers / BERT
+torch>=2.1
+transformers>=4.41
+datasets>=2.19
+accelerate>=0.30
+sentencepiece>=0.2.0
+
+# BERTopic / topic modelling (Phase 5)
+bertopic>=0.16
+sentence-transformers>=2.7
+umap-learn>=0.5
+hdbscan>=0.8
+
+# IAA — Fleiss' kappa
+statsmodels>=0.14
+
+# Notebook support
+jupyter>=1.0
+ipykernel>=6.29
+ipywidgets>=8.1
+nbconvert>=7.16
+
+# ---- Post-install steps (run in terminal) ----
+# 1) Install spaCy English model:
+#    python -m spacy download en_core_web_sm
+#
+# 2) If the command above fails (network restrictions), install via pip:
+#    pip install https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl
+#
+# (Tip) Latest model wheel URLs:
+# https://github.com/explosion/spacy-models/releases

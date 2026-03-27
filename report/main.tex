@@ -1,0 +1,59 @@
+\documentclass[11pt]{article}
+\usepackage{acl}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+% Reduce excessive hyphenation in narrow ACL columns
+\tolerance=1500
+\emergencystretch=1.5em
+\hyphenpenalty=600
+
+\graphicspath{{../figures/}{../outputs/figures/}}
+
+\title{Mining Actionable Suggestions from High-Rated Hotel Reviews:\\A Cross-Domain Transfer Learning Approach}
+
+\author{
+  Chase Sun \and Clara Yang \and Leah Luo \and Xiayi Zhu \\
+  UCL School of Management \\
+  MSIN0221 Natural Language Processing}
+
+\begin{document}
+\maketitle
+
+% ── Contribution table (required by brief) ──
+\begin{table*}[t]
+\centering\small
+\begin{tabular}{lp{12cm}}
+\toprule
+\textbf{Member} & \textbf{Contribution} \\
+\midrule
+Chase & Pipeline architecture, preprocessing, BERT fine-tuning, reproducibility \\
+Clara & EDA, report drafting (Methods, Results, Data) \\
+Leah  & Annotation guidelines, BERTopic clustering, report (Intro, Related Work, Discussion) \\
+Xiayi & Baselines (regex, TF-IDF+LR), error analysis, manual validation, presentation \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\input{sections/abstract}
+\input{sections/introduction}
+\input{sections/related_work}
+\input{sections/data}
+\input{sections/methods}
+\input{sections/results}
+\input{sections/discussion}
+\input{sections/conclusion}
+
+\bibliography{references}
+
+\appendix
+\input{sections/appendix}
+
+\end{document}

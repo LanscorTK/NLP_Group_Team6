@@ -1,0 +1,21 @@
+\begin{abstract}
+To what extent can NLP models detect actionable improvement
+suggestions within high-star hotel reviews? We address this
+question by applying suggestion mining---a sentence-level binary
+classification task---to 70,085 sentences extracted from 8,571
+four- and five-star TripAdvisor reviews of Marina Bay Sands,
+Singapore. We compare three model tiers of increasing complexity:
+a regex baseline, a TF-IDF with logistic regression classifier,
+and a BERT model with two-stage fine-tuning. All models are first
+trained or evaluated on the SemEval-2019 Task~9 dataset from
+software forums, then tested on 80 human-annotated hotel review
+sentences to measure cross-domain transfer. We further apply
+BERTopic clustering to characterise the thematic content of
+predicted suggestions. BERT with two-stage fine-tuning achieves
+the best suggestion-class F1 of 0.581 on the hotel domain,
+approximately doubling the cross-domain-only result (0.286).
+Domain adaptation proves essential: without in-domain fine-tuning,
+learned models drop by up to 0.43 suggestion-class F1. Thematic
+analysis shows that room amenities
+and facilities account for over a third of detected suggestions.
+\end{abstract}

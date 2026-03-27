@@ -1,0 +1,53 @@
+\section{Annotation Guidelines Summary}
+\label{app:guidelines}
+
+Each sentence is labelled as suggestion~(1) or
+non-suggestion~(0). The core decision rule is: ``Does this
+sentence propose a concrete action the hotel could take to
+improve?'' Guidelines cover six edge-case categories:
+
+\begin{enumerate}
+  \item \textbf{Wishes and desires} (label~1): ``I wish the pool
+  was open later'' implies extending pool hours.
+  \item \textbf{Implicit comparisons} (label~1): ``Other hotels
+  offer free shuttle'' implies adding a shuttle service.
+  \item \textbf{Conditional praise} (label~1): ``Great hotel, but
+  they need to fix the elevators'' contains an actionable clause.
+  \item \textbf{Complaints without direction} (label~0): ``The
+  check-in took over an hour'' describes a problem without
+  proposing a fix.
+  \item \textbf{Positive modals} (label~0): ``I would definitely
+  stay again'' uses ``would'' for praise, not suggestion.
+  \item \textbf{Guest advice} (label~1): ``Try the laksa at the
+  food court'' is a recommendation with a directive element.
+\end{enumerate}
+
+Guidelines were revised (v1.0 $\rightarrow$ v1.1) after the
+calibration round to clarify the complaint-versus-suggestion
+boundary and the distinction between informational statements
+and guest-directed advice.
+
+\section{Code Availability}
+\label{app:code}
+
+All code, data processing scripts, and trained model checkpoints
+are available at
+\url{https://github.com/LanscorTK/NLP_Team6}. The full
+pipeline can be reproduced with
+\texttt{python run\_pipeline.py}.
+
+\section{AI Tool Acknowledgement}
+\label{app:ai}
+
+We used Claude (Anthropic) as an assistive tool for coding
+support and project planning throughout this project. Specific
+uses included: debugging Python pipeline code, drafting
+boilerplate LaTeX structure, and literature search assistance
+via arXiv and Semantic Scholar API integrations. All substantive
+research decisions---task formulation, annotation guideline
+design, model selection, hyperparameter choices, and
+interpretation of results---were made by the team. Claude was
+not used to generate report prose; all analytical writing was
+authored by team members. This disclosure follows UCL guidance
+on acknowledging the use of generative AI tools in assessed
+work.

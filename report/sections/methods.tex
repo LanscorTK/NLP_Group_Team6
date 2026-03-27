@@ -1,0 +1,101 @@
+\section{Methods}
+
+\subsection{Task Formulation}
+
+We framed suggestion mining as binary sentence classification:
+each sentence was labelled as suggestion~(1) or
+non-suggestion~(0). Classification operated at the sentence
+level, consistent with the SemEval-2019 task definition. We did
+not use review-level context; each sentence was classified
+independently.
+
+\subsection{Tier 1: Regex Baseline}
+
+The regex baseline classified a sentence as a suggestion if it
+matched any of 24 hand-crafted regular expression patterns.
+These patterns covered three categories:
+modal suggestions (e.g.\ \texttt{\textbackslash bshould\textbackslash b},
+\texttt{\textbackslash bcould improve\textbackslash b}, \texttt{\textbackslash
+bneed to\textbackslash b}), imperatives (e.g.\ \texttt{\textbackslash
+bplease\textbackslash b}, \texttt{\textbackslash brecommend\textbackslash b},
+\texttt{\textbackslash bconsider\textbackslash b}), and conditionals (e.g.\
+\texttt{\textbackslash bi wish\textbackslash b}, \texttt{\textbackslash bit
+would be nice\textbackslash b}, \texttt{\textbackslash bhopefully\textbackslash
+b}). Matching was case-insensitive. This baseline established a
+performance floor and demonstrated the limitations of surface
+patterns---for instance, ``We would recommend this hotel to
+anyone'' matches the modal pattern but is not a suggestion.
+
+\subsection{Tier 2: TF-IDF + LR Baseline}
+
+The TF-IDF~+~LR baseline used a TF-IDF vectoriser (unigrams
+and bigrams, maximum 10,000 features, minimum document
+frequency~2, sublinear term-frequency scaling) followed by
+logistic regression (regularisation $C=1.0$, balanced class
+weights, maximum 1,000 iterations), implemented in scikit-learn
+\citep{pedregosa2011scikit}. The model was trained on the SemEval training set. Balanced
+class weights addressed the class imbalance by upweighting the
+minority suggestion class. This baseline showed the value of
+learned features over hand-crafted rules while remaining
+interpretable and fast to train.
+
+\subsection{Tier 3: BERT Classifier with Two-Stage Fine-Tuning}
+
+Our primary model was \texttt{bert-base-uncased}
+\citep{devlin2019bert}, a 110-million-parameter pre-trained
+transformer implemented via the HuggingFace Transformers library
+\citep{wolf2020transformers}, fine-tuned for binary
+classification with an additional linear output layer.
+
+\paragraph{Stage~1: SemEval fine-tuning.} We fine-tuned on the SemEval training
+  set (8,500 sentences), using a 90/10 stratified train/validation split.
+  Sentences were tokenised with a maximum length of 128 tokens. Training used the
+  AdamW optimiser \citep{loshchilov2019adamw} with learning rate
+  $2 \times 10^{-5}$, batch size~16,
+  3~epochs, linear warmup over 10\% of training steps, and weight decay~0.01. We
+  selected the checkpoint with the best macro~F1 on the validation split. On the
+  SemEval validation split, BERT stage-1 achieved macro~F1 of 0.886 and
+  suggestion-class~F1 of 0.828.
+
+\paragraph{Stage~2: MBS domain adaptation.} Starting from the stage-1
+  checkpoint, we further fine-tuned on the MBS train split, using an 85/15
+  stratified train/validation split. The learning rate was reduced to $1 \times
+  10^{-5}$ to avoid overwriting task knowledge learned in stage~1. All other
+  hyperparameters remained the same. This two-stage approach followed the principle
+  of progressive fine-tuning: pre-trained representations $\rightarrow$
+  task-specific fine-tuning $\rightarrow$ domain-specific adaptation.
+
+All training was performed on Apple Silicon (MPS backend) with a fixed random
+seed of 42. Hyperparameters follow \citet{devlin2019bert}.
+
+\subsection{Insight Generation: BERTopic Clustering}
+
+To transform binary predictions into thematic insights, we
+applied BERTopic \citep{grootendorst2022bertopic} to all
+sentences predicted as suggestions by BERT stage-2. Sentence
+embeddings were computed with \texttt{all-MiniLM-L6-v2}
+\citep{reimers2019sentence}. Dimensionality reduction used UMAP
+\citep{mcinnes2018umap} (5~components, 15~neighbours, cosine
+metric, minimum distance~0.0). Clustering used HDBSCAN
+\citep{campello2013hdbscan} (minimum cluster size~5). Topic
+representations were extracted via a class-based TF-IDF
+procedure. The number of topics was determined automatically.
+
+As a complementary analysis, we applied keyword-based aspect
+grouping to the same set of predicted suggestions. Six
+hotel-relevant aspects were defined: room, food and beverage,
+service, facilities, location, and value. Each sentence was
+assigned to the aspect whose keywords appeared most frequently,
+or to ``other'' if no keywords matched. This provided a coarser
+but more interpretable categorisation than BERTopic.
+
+\subsection{Evaluation}
+
+Our primary metric is suggestion-class~F1, computed on label~1 only. We also
+report precision, recall, and macro~F1. All models are evaluated on both the
+SemEval test set (in-domain evaluation) and the MBS test split (cross-domain
+evaluation). The difference between in-domain and cross-domain
+suggestion-class~F1---the performance delta---quantifies the domain gap.
+We do not perform a separate manual validation step on the full
+MBS predictions. This limitation is discussed in
+Section~6.3.

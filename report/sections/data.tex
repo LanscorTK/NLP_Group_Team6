@@ -1,0 +1,121 @@
+\section{Data}
+
+\subsection{Marina Bay Sands Review Dataset}
+
+We collected 10,232 English-language reviews of Marina Bay
+Sands, Singapore from TripAdvisor, spanning January 2014 to
+October 2022. We filtered for four- and five-star reviews, targeting
+reviews likely to contain improvement suggestions embedded within
+positive text. After removing null entries, 8,571
+reviews remained: 2,414 four-star and 6,157 five-star.
+
+We segmented reviews into sentences using the spaCy
+\texttt{en\_core\_web\_sm} model \citep{honnibal2020spacy} and
+applied three sequential cleaning steps to the 72,391 segmented
+sentences: (1)~a language filter removing 1 non-English sentence,
+(2)~exact deduplication removing 1,137 duplicates, and (3)~a
+length filter removing 1,168 sentences outside the 4--100 token
+range. After all preprocessing, 70,085
+sentences remained, with a median length of 15 tokens and a mean
+of 8.4 sentences per review. Table~\ref{tab:mbs-stats}
+summarises the dataset statistics.
+
+\begin{table}[t]
+\centering\small
+\caption{MBS dataset statistics.}
+\label{tab:mbs-stats}
+\begin{tabular}{lr}
+\toprule
+\textbf{Statistic} & \textbf{Value} \\
+\midrule
+Raw reviews            & 10,232 \\
+After 4--5 star filter & 8,571  \\
+Four-star reviews      & 2,414  \\
+Five-star reviews      & 6,157  \\
+Sentences after preprocessing & 70,085 \\
+Median sentence length (tokens) & 15 \\
+Mean sentences per review & 8.4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{SemEval-2019 Task 9 Dataset}
+
+We use the publicly available SemEval-2019 Task~9 Subtask~A dataset
+\citep{negi2019semeval}, collected from the Uservoice software feedback forum.
+The SemEval training set contains 8,500 sentences (2,085
+suggestions, 6,415 non-suggestions; 24.5\% suggestion rate). The
+SemEval test set contains 833 sentences (87 suggestions, 746
+non-suggestions; 10.4\% suggestion rate). This class imbalance,
+particularly in the SemEval test set, motivates our use of
+suggestion-class
+F1 rather than accuracy as the primary evaluation metric.
+
+The SemEval dataset differs from our MBS sentences in several respects. Software
+forum posts tend to be explicit feature requests using modal verbs (``The system
+should allow\ldots''), while hotel review suggestions are often implicit,
+embedded within descriptive or comparative language (``I wish the breakfast
+had\ldots''). Sentence lengths and vocabulary also differ: the SemEval data
+contains technical terms absent from hospitality reviews. These differences
+constitute the domain shift that our cross-domain evaluation measures.
+
+\begin{table}[t]
+\centering\small
+\caption{SemEval-2019 Task~9 dataset statistics.}
+\label{tab:semeval-stats}
+\begin{tabular}{lrrrr}
+\toprule
+\textbf{Split} & \textbf{Total} & \textbf{Sugg.} & \textbf{Non-sugg.} & \textbf{Rate} \\
+\midrule
+Training & 8,500 & 2,085 & 6,415 & 24.5\% \\
+Test     &   833 &    87 &   746 & 10.4\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Annotation}
+
+We developed annotation guidelines adapted from the SemEval-2019
+task definition \citep{negi2019semeval,negi2018open}, with
+extensions for hotel-domain edge cases such as comparative
+suggestions, implicit improvement requests, and the distinction
+between complaints and concrete suggestions.
+
+\paragraph{Calibration round.} All four annotators independently
+  labelled the same MBS calibration sample of 100 sentences. To
+  increase the proportion of informative examples, we used signal
+  enrichment: 50\% of the sample was drawn from sentences
+  containing suggestion-signal keywords (modal verbs, imperatives,
+  conditionals), and 50\% was drawn randomly. Inter-annotator
+  agreement was fair: Fleiss' $\kappa$ = 0.379. Pairwise Cohen's
+  $\kappa$ ranged from 0.212 to 0.672 (mean 0.426). The highest
+  pairwise agreement (0.672) occurred between two annotators who
+  most consistently distinguished complaints from suggestions; the
+  lowest (0.212) reflected differing thresholds for implicit
+  suggestions. The moderate overall agreement is consistent with
+  the subjective nature of suggestion boundaries reported by
+  \citet{negi2018open}.
+
+\paragraph{Disagreement resolution.} Sentences with majority
+  agreement (3 or 4 of 4 annotators) received the majority label.
+  Of the 100 calibration sentences, 11 produced 2-vs-2 ties; these
+  were resolved by group discussion. Most ties involved sentences
+  where negative sentiment co-occurred with modal verbs (e.g.\
+  ``I would definitely stay again''), which annotators initially
+  split on. After calibration, guidelines were revised to clarify
+  two recurring edge cases: complaints without actionable direction
+  and informational statements versus guest-directed advice.
+
+\paragraph{Split annotation.} After calibration, 300 additional
+  sentences were divided into four batches of 75, with each
+  annotator labelling one batch independently. Combined with the
+  100 calibration sentences, the MBS annotated set contains 400
+  sentences: 73 suggestions (18.25\%) and 327 non-suggestions
+  (81.75\%). The suggestion rate is lower than the SemEval training
+  set (24.5\%), reflecting the less directive language typical of
+  hotel reviews.
+
+\paragraph{Train/test split.} The MBS annotated set was split
+  80/20 (stratified by label) into an MBS train split of 320
+  sentences (58 suggestions, 18.1\%) and an MBS test split of 80
+  sentences (15 suggestions, 18.8\%).

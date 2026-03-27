@@ -1,0 +1,99 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{negi2018open}
+\citation{negi2019semeval}
+\citation{park2019bert}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\citation{negi2018open}
+\citation{negi2017distant}
+\citation{negi2019semeval}
+\citation{devlin2019bert}
+\citation{park2019bert}
+\citation{prasanna2019zoho}
+\citation{grootendorst2022bertopic}
+\citation{honnibal2020spacy}
+\citation{negi2019semeval}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Suggestion mining.}{2}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Domain adaptation and BERT fine-tuning.}{2}{section*.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Sentiment analysis versus suggestion mining.}{2}{section*.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Data}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Marina Bay Sands Review Dataset}{2}{subsection.3.1}\protected@file@percent }
+\citation{negi2019semeval,negi2018open}
+\citation{negi2018open}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces MBS dataset statistics.}}{3}{table.caption.5}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:mbs-stats}{{1}{3}{MBS dataset statistics}{table.caption.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces SemEval-2019 Task~9 dataset statistics.}}{3}{table.caption.6}\protected@file@percent }
+\newlabel{tab:semeval-stats}{{2}{3}{SemEval-2019 Task~9 dataset statistics}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}SemEval-2019 Task 9 Dataset}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Annotation}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Calibration round.}{3}{section*.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Disagreement resolution.}{3}{section*.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Split annotation.}{3}{section*.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Train/test split.}{3}{section*.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Methods}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Task Formulation}{3}{subsection.4.1}\protected@file@percent }
+\citation{pedregosa2011scikit}
+\citation{devlin2019bert}
+\citation{wolf2020transformers}
+\citation{loshchilov2019adamw}
+\citation{devlin2019bert}
+\citation{grootendorst2022bertopic}
+\citation{reimers2019sentence}
+\citation{mcinnes2018umap}
+\citation{campello2013hdbscan}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Tier 1: Regex Baseline}{4}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Tier 2: TF-IDF + LR Baseline}{4}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Tier 3: BERT Classifier with Two-Stage Fine-Tuning}{4}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stage~1: SemEval fine-tuning.}{4}{section*.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Stage~2: MBS domain adaptation.}{4}{section*.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Insight Generation: BERTopic Clustering}{4}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Evaluation}{4}{subsection.4.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Suggestion-class metrics. P = precision, R = recall. $\Delta $ = MBS F1 $-$ SemEval F1.}}{5}{table.caption.13}\protected@file@percent }
+\newlabel{tab:results}{{3}{5}{Suggestion-class metrics. P = precision, R = recall. $\Delta $ = MBS F1 $-$ SemEval F1}{table.caption.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Confusion matrix for BERT stage-2 on the MBS test split (80 sentences).}}{5}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:cm-s2}{{1}{5}{Confusion matrix for BERT stage-2 on the MBS test split (80 sentences)}{figure.caption.14}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{5}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Model Comparison}{5}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Domain Transfer Analysis}{5}{subsection.5.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Suggestion-class F1 by model and dataset.}}{5}{figure.caption.15}\protected@file@percent }
+\newlabel{fig:model-comparison}{{2}{5}{Suggestion-class F1 by model and dataset}{figure.caption.15}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Suggestion Themes (BERTopic)}{5}{subsection.5.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Aspect distribution of predicted suggestions.}}{6}{table.caption.16}\protected@file@percent }
+\newlabel{tab:aspects}{{4}{6}{Aspect distribution of predicted suggestions}{table.caption.16}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Error Analysis and Discussion}{6}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Error Analysis}{6}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{False positives.}{6}{section*.17}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{False negatives.}{6}{section*.18}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces False positives versus false negatives by model on the MBS test split. Stage-2 fine-tuning shifts the error profile from FN-dominant to more balanced.}}{6}{figure.caption.19}\protected@file@percent }
+\newlabel{fig:error-comparison}{{3}{6}{False positives versus false negatives by model on the MBS test split. Stage-2 fine-tuning shifts the error profile from FN-dominant to more balanced}{figure.caption.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Domain Gap Discussion}{6}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Limitations}{6}{subsection.6.3}\protected@file@percent }
+\bibdata{references}
+\bibcite{campello2013hdbscan}{{1}{2013}{{Campello et~al.}}{{Campello, Moulavi, and Sander}}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Future Directions}{7}{subsection.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{7}{section.7}\protected@file@percent }
+\bibcite{devlin2019bert}{{2}{2019}{{Devlin et~al.}}{{Devlin, Chang, Lee, and Toutanova}}}
+\bibcite{grootendorst2022bertopic}{{3}{2022}{{Grootendorst}}{{}}}
+\bibcite{honnibal2020spacy}{{4}{2020}{{Honnibal et~al.}}{{Honnibal, Montani, Van~Landeghem, and Boyd}}}
+\bibcite{loshchilov2019adamw}{{5}{2019}{{Loshchilov and Hutter}}{{}}}
+\bibcite{mcinnes2018umap}{{6}{2018}{{McInnes et~al.}}{{McInnes, Healy, and Melville}}}
+\bibcite{negi2017distant}{{7}{2017}{{Negi and Buitelaar}}{{}}}
+\bibcite{negi2019semeval}{{8}{2019}{{Negi et~al.}}{{Negi, Daudert, and Buitelaar}}}
+\bibcite{negi2018open}{{9}{2018}{{Negi et~al.}}{{Negi, de~Rijke, and Buitelaar}}}
+\bibcite{park2019bert}{{10}{2019}{{Park et~al.}}{{Park, Kim, Lee, Amplayo, Kim, Seo, and Lee}}}
+\bibcite{pedregosa2011scikit}{{11}{2011}{{Pedregosa et~al.}}{{Pedregosa, Varoquaux, Gramfort, Michel, Thirion, Grisel, Blondel, Prettenhofer, Weiss, Dubourg et~al.}}}
+\bibcite{prasanna2019zoho}{{12}{2019}{{Prasanna and Seelan}}{{}}}
+\bibcite{reimers2019sentence}{{13}{2019}{{Reimers and Gurevych}}{{}}}
+\bibcite{wolf2020transformers}{{14}{2020}{{Wolf et~al.}}{{Wolf, Debut, Sanh, Chaumond, Delangue, Moi, Cistac, Rault, Louf, Funtowicz et~al.}}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Annotation Guidelines Summary}{8}{appendix.A}\protected@file@percent }
+\newlabel{app:guidelines}{{A}{8}{Annotation Guidelines Summary}{appendix.A}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Code Availability}{9}{appendix.B}\protected@file@percent }
+\newlabel{app:code}{{B}{9}{Code Availability}{appendix.B}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}AI Tool Acknowledgement}{9}{appendix.C}\protected@file@percent }
+\newlabel{app:ai}{{C}{9}{AI Tool Acknowledgement}{appendix.C}{}}
+\gdef \@abspage@last{9}
