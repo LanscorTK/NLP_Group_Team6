@@ -81,10 +81,7 @@ NLP_Team6/
 │   ├── topic_modeling.py  BERTopic clustering + aspect grouping
 │   └── error_analysis.py  Error categorisation and comparison plots
 ├── report/                LaTeX report (ACL template) + references
-├── comments/              Agent handoff files (proofreading review, engineer tasks)
-├── agent_instructions/    Reusable prompts for multi-agent workflow
 ├── run_pipeline.py        CLI runner: python run_pipeline.py [--phase N]
-├── verify_results.py      Reproducibility checker (17 automated checks)
 ├── outputs/               Figures (25 PNGs), model checkpoints (git-ignored)
 ├── external/              External reference code and data (SemEval)
 └── requirements.txt
