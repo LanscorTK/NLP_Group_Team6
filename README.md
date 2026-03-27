@@ -63,7 +63,7 @@ We focus on a luxury hospitality context (Marina Bay Sands, Singapore), where di
 
 ```
 NLP_Team6/
-├── docs/                  Assignment brief, proposal, plan, annotation guidelines
+├── docs/                  Project proposal
 ├── data/
 │   ├── raw/               Raw TripAdvisor Excel file (git-ignored)
 │   └── processed/         Filtered reviews, segmented sentences, annotated data
